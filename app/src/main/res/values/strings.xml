@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">SoftwarepatternsCA4</string>
+    <string name="UsernameString">Username</string>
+    <string name="PasswordString">Password</string>
+    <string name="EnterBtnString">Enter</string>
+    <string name="SignUpBtnString">Sign Up</string>
+    <string name="EmailString">Email</string>
+    <string name="LoginBtnString">Login</string>
+    <string name="SignUpBanner">Sign Up</string>
+    <string name="ShippingAddressString">Shipping Address</string>
+    <string name="paymentMethodString">Payment Method</string>
+    <string name="NameString">Name</string>
+
+
+
 </resources>
