@@ -46,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
         EditText paymentMethodET = findViewById(R.id.PaymentMethodET);
 
 
-        DatabaseReference firebaseUsers = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference firebaseUsers = FirebaseDatabase.getInstance("https://spca4-e7325-default-rtdb.europe-west1.firebasedatabase.app").getReference();
 
         Button signUpBtn = findViewById(R.id.signupBtn);
 
@@ -68,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
                                         Log.d("MESSAGE","email is "+email);
                                         Log.d("MESSAGE","password is "+password);
                                         String userID= mUser.getUid();
-                                        User user = new User(name,shippingaddress,paymentMethod,email,userID);
+                                        User user = new User(name,shippingaddress,paymentMethod,email,userID,0);
 
                                         firebaseUsers.child("Users").child(userID).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
@@ -90,6 +90,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                                         Toast.makeText(SignUpActivity.this, "Authentication failed.",
                                                 Toast.LENGTH_SHORT).show();
+                                        Log.d("MESSAGE","email "+email+ " password: "+password);
+
                                     }
                                 }
                             });

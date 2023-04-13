@@ -10,7 +10,13 @@
     <string name="ShippingAddressString">Shipping Address</string>
     <string name="paymentMethodString">Payment Method</string>
     <string name="NameString">Name</string>
-
+    <string name="TitleString">Title</string>
+    <string name="ManufacturerString">Manufacturer</string>
+    <string name="PriceString">Price</string>
+    <string name="CategoryString">Category</string>
+    <string name="ChooseImageString">Choose an Image</string>
+    <string name="SubmitProductString">Submit Product</string>
+    <string name="appName">ElecTonic</string>
 
 
 </resources>
