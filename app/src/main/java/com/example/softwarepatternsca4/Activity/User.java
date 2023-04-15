@@ -10,6 +10,8 @@ public class User {
     String email;
     int cart;
 
+    int activeDiscount;
+
     public User(String name, String shippingAddress, String paymentMethod, String email,String userid,int cart) {
         this.name = name;
         this.admin = false;
@@ -18,6 +20,14 @@ public class User {
         this.email = email;
         this.userId = userid;
         this.cart = cart;
+    }
+
+    public int getActiveDiscount() {
+        return activeDiscount;
+    }
+
+    public void setActiveDiscount(int activeDiscount) {
+        this.activeDiscount = activeDiscount;
     }
 
     public String getUserId() {

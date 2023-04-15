@@ -17,6 +17,10 @@
     <string name="ChooseImageString">Choose an Image</string>
     <string name="SubmitProductString">Submit Product</string>
     <string name="appName">ElecTonic</string>
+    <string name="purchasehistorystring">Purchase History</string>
+    <string name="profileSTring">Profile</string>
+    <string name="profileDetails">Profile Details</string>
 
+    <string name="LoyaltyCard">Loyalty Card</string>
 
 </resources>

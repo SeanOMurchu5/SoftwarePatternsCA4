@@ -11,13 +11,34 @@ public class Item implements Serializable {
     private String category;
     private String image;
 
-    public Item(String title, String manufacturer, String uniqueId, double price, String category, String image) {
+    private int stock;
+    private int numberInCart;
+
+
+    public Item(String title, String manufacturer, String uniqueId, double price, String category, String image,int s) {
         this.title = title;
         this.manufacturer = manufacturer;
         this.uniqueId = uniqueId;
         this.price = price;
         this.category = category;
         this.image = image;
+        this.stock  = s;
+    }
+
+    public int getNumberInCart() {
+        return numberInCart;
+    }
+
+    public void setNumberInCart(int numberInCart) {
+        this.numberInCart = numberInCart;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public String getTitle() {

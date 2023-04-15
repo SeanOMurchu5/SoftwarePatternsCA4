@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    >
+    <item android:id="@+id/action_searchTitle"
+        android:title="@string/TitleString"
+        android:icon="@drawable/title"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        />
+    <item android:id="@+id/action_searchCategory"
+        android:title="@string/CategoryString"
+        android:icon="@drawable/category"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+
+        />
+    <item android:id="@+id/action_searchManufacturer"
+        android:title="@string/ManufacturerString"
+        android:icon="@drawable/manufacturer"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+
+        />
+</menu>

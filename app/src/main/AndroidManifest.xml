@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,8 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SoftwarepatternsCA4"
         android:usesCleartextTraffic="true"
-
         tools:targetApi="31">
+        <activity
+            android:name=".LoyaltyCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PurchaseHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".showDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".Activity.detailActivity"
             android:exported="false" />

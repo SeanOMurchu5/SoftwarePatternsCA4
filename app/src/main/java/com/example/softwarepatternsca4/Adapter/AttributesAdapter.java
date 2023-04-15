@@ -31,6 +31,7 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     RecyclerView.Adapter a;
     RecyclerView recyclerView;
     MainActivity mainActivity;
+    Boolean titlebool, catbool,manubool, pricebool;
 
     public AttributesAdapter(ArrayList<AttributeDomain> attributeDomains) {
         this.attributeDomains = attributeDomains;
@@ -38,6 +39,11 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     public AttributesAdapter(ArrayList<AttributeDomain> attributeDomains, MainActivity a) {
         this.attributeDomains = attributeDomains;
        this.mainActivity = a;
+        this.titlebool = true;
+        this.catbool = true;
+        this.manubool = true;
+        this.pricebool = true;
+
     }
 
 
@@ -106,21 +112,42 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
                 case "Title":{
                     Log.d("CREATION","in title ");
 
-                    mainActivity.sortItemList("Title");
+                    if(titlebool){
+                        mainActivity.sortItemList("Title",titlebool);
+                        titlebool = false;
+                    }else{
+                        mainActivity.sortItemList("Title",titlebool);
+                        titlebool = true;
+                    }
                     break;
                 }
                 case "Category":{
-                    mainActivity.sortItemList("Category");
-                    break;
+                    if(catbool){
+                        mainActivity.sortItemList("Category",catbool);
+                        catbool = false;
+                    }else{
+                        mainActivity.sortItemList("Category",catbool);
+                        catbool = true;
+                    }                    break;
                 }
                 case "Manufacturer":{
-                    mainActivity.sortItemList("Manufacturer");
-
+                    if(manubool){
+                        mainActivity.sortItemList("Manufacturer",manubool);
+                        manubool = false;
+                    }else{
+                        mainActivity.sortItemList("Manufacturer",manubool);
+                        manubool = true;
+                    }
                     break;
                 }
                 case "Price":{
-                    mainActivity.sortItemList("Price");
-
+                    if(pricebool){
+                        mainActivity.sortItemList("Price",pricebool);
+                        pricebool = false;
+                    }else{
+                        mainActivity.sortItemList("Price",pricebool);
+                        pricebool = true;
+                    }
                     break;
                 }
 

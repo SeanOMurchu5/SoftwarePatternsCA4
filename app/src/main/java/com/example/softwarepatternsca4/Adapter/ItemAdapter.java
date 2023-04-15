@@ -55,6 +55,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
         return items.size();
     }
 
+    public void filterList(ArrayList<Item> filterlist) {
+
+        items = filterlist;
+
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView title,category,manufacturer,price;
         ImageView pic;
