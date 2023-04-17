@@ -4,85 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.ProfileActivity"
+    tools:context=".Activity.searchStock"
     android:clipChildren="false"
 
     >
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/profileSTring"
-        android:textColor="@color/teal_200"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:text="Search Stock"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/purchaseHistoryBtn"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stockRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
-
-        android:background="@drawable/teal_background"
-        android:gravity="center"
-        android:text="@string/purchasehistorystring"
-        android:textColor="#ffff"
-        android:textSize="25sp"
-        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-    <TextView
-        android:id="@+id/profileDetailsBtn"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/teal_background"
-        android:gravity="center"
-        android:text="@string/profileDetails"
-        android:textColor="#ffff"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/purchaseHistoryBtn" />
-
-    <TextView
-        android:id="@+id/loyaltyCardBtn"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/teal_background"
-        android:gravity="center"
-        android:text="@string/LoyaltyCard"
-        android:textColor="#ffff"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileDetailsBtn" />
-
-    <TextView
-        android:id="@+id/adminBtn"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/teal_background"
-        android:gravity="center"
-        android:text="Admin Tools"
-        android:textColor="#ffff"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loyaltyCardBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"

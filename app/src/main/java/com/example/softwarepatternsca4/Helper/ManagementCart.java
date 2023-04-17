@@ -28,11 +28,12 @@ import java.util.concurrent.Executors;
 public class ManagementCart {
     private Context context;
     DatabaseReference fireDB;
+    DatabaseReference stockDB;
+
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private String userID;
     ArrayList<Item> feeList = null;
-    ExecutorService es;
 
     public ManagementCart(Context context){
         this.context = context;
@@ -40,12 +41,13 @@ public class ManagementCart {
         mUser = mAuth.getCurrentUser();
         assert mUser != null;
         userID = mUser.getUid();
-        es = Executors.newCachedThreadPool();
 
         fireDB = FirebaseDatabase.getInstance().getReference("cart");
+        stockDB = FirebaseDatabase.getInstance().getReference("items");
+
     }
 
-    public void insertProduct(Item item) throws InterruptedException {
+    public void insertProduct(Item item) {
         Log.d("CREATION","insert1 ");
 
         ArrayList<Item> productList = getListCart();
@@ -74,7 +76,7 @@ public class ManagementCart {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(context.getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                Log.d("CREATION","success ");
+                Log.d("CREATION","success");
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -98,12 +100,18 @@ public class ManagementCart {
         ArrayList<Item> cart = new ArrayList<>();
         Log.d("CREATION","Created cart ");
 
-        fireDB.child(userID).addChildEventListener(new ChildEventListener() {
+        fireDB.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Log.v(TAG,"Created child "+snapshot.getKey());
-                Item item = snapshot.getValue(Item.class);
-                cart.add(item);
+                if(snapshot.getKey().equalsIgnoreCase(userID)) {
+
+                        Log.v(TAG, "Created child " + snapshot.getKey());
+                        Item item = snapshot.getValue(Item.class);
+                        cart.add(item);
+
+
+
+                }
 
             }
 
@@ -138,7 +146,12 @@ public class ManagementCart {
 
     public void plusNumberFood(ArrayList<Item> list, int position, ChangeNumberItemsListener changeNumberItemsListener)  {
         list.get(position).setNumberInCart(list.get(position).getNumberInCart() + 1);
-        fireDB.setValue(list);
+        fireDB.child(userID).child(list.get(position).getUniqueId()).setValue(list.get(position));
+        changeNumberItemsListener.changed();
+    }
+    public void plusNumberStock(ArrayList<Item> list, int position, ChangeNumberItemsListener changeNumberItemsListener)  {
+        list.get(position).setNumberInCart(list.get(position).getNumberInCart() + 1);
+        stockDB.child(list.get(position).getUniqueId()).setValue(list.get(position));
         changeNumberItemsListener.changed();
     }
 
@@ -148,7 +161,17 @@ public class ManagementCart {
         }else{
             list.get(position).setNumberInCart(list.get(position).getNumberInCart()-1);
         }
-        fireDB.setValue(list);
+        fireDB.child(userID).child(list.get(position).getUniqueId()).setValue(list.get(position));
+        changeNumberItemsListener.changed();
+    }
+
+    public void minusNumberStock(ArrayList<Item> list,int position,ChangeNumberItemsListener changeNumberItemsListener)  {
+        if(list.get(position).getNumberInCart()==1){
+            list.remove(position);
+        }else{
+            list.get(position).setNumberInCart(list.get(position).getNumberInCart()-1);
+        }
+        stockDB.child(list.get(position).getUniqueId()).setValue(list.get(position));
         changeNumberItemsListener.changed();
     }
 

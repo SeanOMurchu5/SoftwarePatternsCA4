@@ -85,7 +85,7 @@ public class addProductActivity extends AppCompatActivity {
                 String pic="";
 
 
-                Item prod = new Item(title,manufacturer,uniqueId,price,category,"productImage");
+                Item prod = new Item(title,manufacturer,uniqueId,price,category,"productImage",10);
                 //uploadImage(uniqueId);
 
                 firebaseRef.child("Products").child(uniqueId).setValue(prod).addOnSuccessListener(new OnSuccessListener<Void>() {

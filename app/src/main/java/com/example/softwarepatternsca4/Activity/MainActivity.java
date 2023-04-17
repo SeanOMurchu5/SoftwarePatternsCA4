@@ -27,7 +27,7 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewAttributesList, recyclerViewProductList;
-    private ItemAdapter adapter2;
+    ItemAdapter adapter2;
     AttributesAdapter adapter;
     ArrayList<Item> itemList;
 
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         itemList = new ArrayList<Item>();
+        recyclerViewProductList = findViewById(R.id.productRecyclerView);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.main_menu);
@@ -133,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void recyclerViewItems() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        recyclerViewProductList = findViewById(R.id.productRecyclerView);
         recyclerViewProductList.setLayoutManager(linearLayoutManager);
 
         itemList.add(new Item("Iphone 14","Apple", UUID.randomUUID().toString(),1160,"Phone","iphone",10));
@@ -152,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton floatingActionButton = findViewById(R.id.cartBtn);
         LinearLayout homeBtn = findViewById(R.id.homeBtn);
         LinearLayout addBtn = findViewById(R.id.addBtn);
+        LinearLayout profileBtn = findViewById(R.id.profileBtn);
+
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,6 +173,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,addProductActivity.class));
+
+            }
+        });
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
 
             }
         });

@@ -14,7 +14,9 @@ public class Item implements Serializable {
     private int stock;
     private int numberInCart;
 
+    public Item(){
 
+    }
     public Item(String title, String manufacturer, String uniqueId, double price, String category, String image,int s) {
         this.title = title;
         this.manufacturer = manufacturer;

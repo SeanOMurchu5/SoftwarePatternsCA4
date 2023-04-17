@@ -2,6 +2,7 @@ package com.example.softwarepatternsca4.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.softwarepatternsca4.Activity.detailActivity;
+import com.example.softwarepatternsca4.Activity.showDetailActivity;
 import com.example.softwarepatternsca4.Domain.Item;
 import com.example.softwarepatternsca4.R;
 
@@ -47,6 +48,20 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
 
         Glide.with(holder.itemView.getContext()).load(drawableResourceId).into(holder.pic);
 
+        holder.addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("CREATION","Inside onclick for item adapter ");
+
+                String name =items.get(position).getTitle();
+                Item p = items.get(position);
+
+                Intent intent = new Intent(holder.itemView.getContext(), showDetailActivity.class);
+                intent.putExtra("product",p);
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -63,29 +78,31 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView title,category,manufacturer,price;
+        TextView title,category,manufacturer,price,addBtn;
         ImageView pic;
-        TextView addBtn;
         ConstraintLayout mainLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mainLayout = itemView.findViewById(R.id.constraintLayout);
-            title = itemView.findViewById(R.id.Titletxt);
+            mainLayout = itemView.findViewById(R.id.purchaseHistoryConstraint);
+            title = itemView.findViewById(R.id.transactionId);
             category = itemView.findViewById(R.id.CategoryTxt);
             pic = itemView.findViewById(R.id.itemImage);
-            manufacturer = itemView.findViewById(R.id.ManufacturerTxt);
-            price = itemView.findViewById(R.id.PriceTxt);
+            manufacturer = itemView.findViewById(R.id.numOfItemsTxt);
+            price = itemView.findViewById(R.id.priceTxt);
+            addBtn = itemView.findViewById(R.id.addBtn);
 
 
         }
 
         @Override
         public void onClick(View view) {
+            Log.d("CREATION","Inside onclick for item adapter ");
+
             int position = this.getLayoutPosition(); //get the position where the click happened
             String name =items.get(position).getTitle();
             Item p = items.get(position);
 
-            Intent intent = new Intent(view.getContext(), detailActivity.class);
+            Intent intent = new Intent(view.getContext(), showDetailActivity.class);
             intent.putExtra("product",p);
             view.getContext().startActivity(intent);
         }

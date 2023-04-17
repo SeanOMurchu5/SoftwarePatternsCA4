@@ -1,6 +1,8 @@
 package com.example.softwarepatternsca4.Activity;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     String userId;
     String name;
@@ -10,7 +12,7 @@ public class User {
     String email;
     int cart;
 
-    int activeDiscount;
+    boolean activeDiscount;
 
     public User(String name, String shippingAddress, String paymentMethod, String email,String userid,int cart) {
         this.name = name;
@@ -22,11 +24,11 @@ public class User {
         this.cart = cart;
     }
 
-    public int getActiveDiscount() {
+    public boolean isActiveDiscount() {
         return activeDiscount;
     }
 
-    public void setActiveDiscount(int activeDiscount) {
+    public void setActiveDiscount(boolean activeDiscount) {
         this.activeDiscount = activeDiscount;
     }
 

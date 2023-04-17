@@ -2,9 +2,10 @@ package com.example.softwarepatternsca4.Activity;
 
 import com.example.softwarepatternsca4.Domain.Item;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Transaction {
+public class Transaction implements Serializable {
     public String productId;
     public String userId;
     public Double totalCost;

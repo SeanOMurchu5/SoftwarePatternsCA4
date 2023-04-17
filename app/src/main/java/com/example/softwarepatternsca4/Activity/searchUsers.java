@@ -1,0 +1,85 @@
+package com.example.softwarepatternsca4.Activity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+
+import com.example.softwarepatternsca4.Adapter.ItemAdapter;
+import com.example.softwarepatternsca4.Adapter.UserAdapter;
+import com.example.softwarepatternsca4.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+
+public class searchUsers extends AppCompatActivity {
+
+    RecyclerView usersRecyclerView;
+    UserAdapter adapter;
+    DatabaseReference fireDB;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    String userID;
+    ArrayList<User> userList;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search_users);
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        assert mUser != null;
+        userID = mUser.getUid();
+        usersRecyclerView=findViewById(R.id.customerDBRecyclerView);
+
+        fireDB = FirebaseDatabase.getInstance().getReference("users");
+        getUsers();
+    }
+
+    public void getUsers(){
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        usersRecyclerView.setLayoutManager(linearLayoutManager);
+        fireDB.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                   User user = dataSnapshot.getValue(User.class);
+                   userList.add(user);
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        adapter = new UserAdapter(userList);
+
+
+        usersRecyclerView.setAdapter(adapter);
+
+    }
+}
